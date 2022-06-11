@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/login.gd" type="Script" id=1]
+[ext_resource path="res://Desktop/background.jpg" type="Texture" id=2]
+[ext_resource path="res://Identity/female20141023857211029.jpg" type="Texture" id=3]
+
+[node name="Logscreen" type="Node2D"]
+
+[node name="background" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="avatar" type="Sprite" parent="."]
+position = Vector2( 1000, 500 )
+texture = ExtResource( 3 )
+
+[node name="password" type="LineEdit" parent="."]
+margin_left = 900.0
+margin_top = 680.0
+margin_right = 1100.0
+margin_bottom = 720.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 100, 0 )
+max_length = 20
+secret = true
+placeholder_text = "Password..."
+caret_blink = true
+script = ExtResource( 1 )
+
+[node name="wp_message" type="Label" parent="password"]
+visible = false
+margin_left = 40.0
+margin_top = 50.0
+margin_right = 160.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Wrong Password!"
+align = 1
+
+[node name="username" type="Label" parent="."]
+margin_left = 950.0
+margin_top = 610.0
+margin_right = 1000.0
+margin_bottom = 624.0
+rect_scale = Vector2( 2, 2 )
+text = "Chloe"
+align = 1
+
+[connection signal="text_entered" from="password" to="password" method="_on_password_text_entered"]
