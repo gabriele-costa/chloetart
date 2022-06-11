@@ -18,9 +18,12 @@ config/icon="res://icon.png"
 
 window/size/width=2000
 window/size/height=1125
-window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[global]
+
+full=false
 
 [physics]
 
