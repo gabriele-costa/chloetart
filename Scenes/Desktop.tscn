@@ -24,28 +24,36 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 centered = false
 
-[node name="filesystem" type="Sprite" parent="."]
-position = Vector2( 60, 60 )
-texture = ExtResource( 4 )
+[node name="filesystem" type="ToolButton" parent="."]
+margin_left = 30.0
+margin_top = 74.0
+margin_right = 106.0
+margin_bottom = 146.0
+icon = ExtResource( 4 )
 script = ExtResource( 10 )
 
 [node name="filesystem_label" type="Label" parent="filesystem"]
-margin_left = -40.0
-margin_top = 40.0
-margin_bottom = 54.0
+margin_left = -4.0
+margin_top = 72.0
+margin_right = 37.0
+margin_bottom = 86.0
 rect_scale = Vector2( 2, 2 )
 text = "Files"
 align = 1
 valign = 1
 
-[node name="browser" type="Sprite" parent="."]
-position = Vector2( 60, 180 )
-texture = ExtResource( 5 )
+[node name="browser" type="ToolButton" parent="."]
+margin_left = 31.0
+margin_top = 214.0
+margin_right = 107.0
+margin_bottom = 286.0
+icon = ExtResource( 5 )
 
 [node name="browser_label" type="Label" parent="browser"]
-margin_left = -52.0
-margin_top = 40.0
-margin_bottom = 54.0
+margin_left = -13.0
+margin_top = 84.0
+margin_right = 39.0
+margin_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 2, 2 )
@@ -53,14 +61,18 @@ text = "Internet"
 align = 1
 valign = 1
 
-[node name="email" type="Sprite" parent="."]
-position = Vector2( 60, 300 )
-texture = ExtResource( 9 )
+[node name="email" type="ToolButton" parent="."]
+margin_left = 34.0
+margin_top = 374.0
+margin_right = 110.0
+margin_bottom = 446.0
+icon = ExtResource( 9 )
 
 [node name="email_label" type="Label" parent="email"]
-margin_left = -52.0
-margin_top = 40.0
-margin_bottom = 54.0
+margin_left = -18.0
+margin_top = 78.0
+margin_right = 34.0
+margin_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 2, 2 )
@@ -68,14 +80,18 @@ text = "Mail"
 align = 1
 valign = 1
 
-[node name="tools" type="Sprite" parent="."]
-position = Vector2( 60, 420 )
-texture = ExtResource( 6 )
+[node name="tools" type="ToolButton" parent="."]
+margin_left = 36.0
+margin_top = 519.0
+margin_right = 112.0
+margin_bottom = 591.0
+icon = ExtResource( 6 )
 
 [node name="tools_label" type="Label" parent="tools"]
-margin_left = -52.0
-margin_top = 40.0
-margin_bottom = 54.0
+margin_left = -19.0
+margin_top = 83.0
+margin_right = 37.0
+margin_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 2, 2 )
@@ -125,3 +141,5 @@ rect_scale = Vector2( 2, 2 )
 text = "13:37"
 align = 1
 valign = 1
+
+[connection signal="pressed" from="filesystem" to="filesystem" method="_on_filesystem_pressed"]
