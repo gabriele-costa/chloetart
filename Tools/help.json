@@ -1,0 +1,13 @@
+{
+  "command" : "help",
+  "output" : [
+    "" : {
+      "message" : "List of available commands:\n help : print this message and exit.\n rtfm : manual describing command usage.\n netdog : scan a machine over the network\n",
+      "delay" : 0
+    }
+    "_" : {
+      "message" : "Syntax error. Try 'help'.",
+      "delay" : 0
+    }
+  ]
+}
