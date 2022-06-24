@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Desktop/background.jpg" type="Texture" id=1]
 [ext_resource path="res://Desktop/icons/desktop.svg" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Desktop/icons/trashcan_empty.svg" type="Texture" id=8]
 [ext_resource path="res://Desktop/icons/email.svg" type="Texture" id=9]
 [ext_resource path="res://Scripts/filesystem_icon.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/tools.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.262745, 0.262745, 0.262745, 0.705882 )
@@ -86,6 +87,7 @@ margin_top = 519.0
 margin_right = 112.0
 margin_bottom = 591.0
 icon = ExtResource( 6 )
+script = ExtResource( 11 )
 
 [node name="tools_label" type="Label" parent="tools"]
 margin_left = -19.0
@@ -143,3 +145,4 @@ align = 1
 valign = 1
 
 [connection signal="pressed" from="filesystem" to="filesystem" method="_on_filesystem_pressed"]
+[connection signal="pressed" from="tools" to="tools" method="_on_tools_pressed"]

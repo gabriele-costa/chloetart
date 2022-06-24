@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Desktop/icons/desktop.svg" type="Texture" id=1]
 [ext_resource path="res://Desktop/background.jpg" type="Texture" id=2]
@@ -7,8 +7,17 @@
 [ext_resource path="res://Desktop/icons/network-wireless.svg" type="Texture" id=5]
 [ext_resource path="res://Window/Icons/close.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/desktop_button.gd" type="Script" id=7]
+[ext_resource path="res://Fonts/miscfs__.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Scripts/TerminaTextEdit.gd" type="Script" id=9]
 
 [sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.262745, 0.262745, 0.262745, 0.705882 )
@@ -52,8 +61,17 @@ script = ExtResource( 4 )
 [node name="TextEdit" type="TextEdit" parent="Panel"]
 margin_left = 5.0
 margin_top = 60.0
-margin_right = 1995.0
-margin_bottom = 1040.0
+margin_right = 1000.0
+margin_bottom = 550.0
+rect_scale = Vector2( 2, 2 )
+theme = SubResource( 5 )
+custom_colors/caret_color = Color( 0.054902, 1, 0, 1 )
+custom_colors/font_color = Color( 0.054902, 1, 0, 1 )
+text = "Welcome to Terminal. Type 'help' for a list of available commands.
+$ "
+caret_block_mode = true
+caret_blink = true
+script = ExtResource( 9 )
 
 [node name="os_bar" type="Panel" parent="."]
 margin_top = 1045.0
@@ -84,4 +102,6 @@ align = 1
 valign = 1
 
 [connection signal="pressed" from="Panel/CloseButton" to="Panel/CloseButton" method="_on_CloseButton_pressed"]
+[connection signal="cursor_changed" from="Panel/TextEdit" to="Panel/TextEdit" method="_on_TextEdit_cursor_changed"]
+[connection signal="text_changed" from="Panel/TextEdit" to="Panel/TextEdit" method="_on_TextEdit_text_changed"]
 [connection signal="pressed" from="os_bar/desktop" to="os_bar/desktop" method="_on_desktop_pressed"]
