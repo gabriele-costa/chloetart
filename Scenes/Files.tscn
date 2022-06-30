@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Desktop/icons/desktop.svg" type="Texture" id=1]
 [ext_resource path="res://Desktop/background.jpg" type="Texture" id=2]
@@ -7,8 +7,12 @@
 [ext_resource path="res://Desktop/icons/network-wireless.svg" type="Texture" id=5]
 [ext_resource path="res://Window/Icons/close.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/desktop_button.gd" type="Script" id=7]
+[ext_resource path="res://Desktop/icons/image-x-generic.svg" type="Texture" id=8]
 
 [sub_resource type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.172549, 0.172549, 0.172549, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.262745, 0.262745, 0.262745, 0.705882 )
@@ -23,13 +27,13 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Panel" type="Panel" parent="."]
+[node name="WindowPanel" type="Panel" parent="."]
 margin_right = 2000.0
 margin_bottom = 1045.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="WindowTitle" type="Label" parent="WindowPanel"]
 margin_left = 950.0
 margin_top = 10.0
 margin_right = 1050.0
@@ -41,13 +45,49 @@ text = "Files"
 align = 1
 valign = 1
 
-[node name="CloseButton" type="ToolButton" parent="Panel"]
+[node name="CloseButton" type="ToolButton" parent="WindowPanel"]
 margin_left = 1950.0
 margin_right = 2562.0
 margin_bottom = 608.0
 rect_scale = Vector2( 0.08, 0.08 )
 icon = ExtResource( 6 )
 script = ExtResource( 4 )
+
+[node name="FilePanel" type="Panel" parent="WindowPanel"]
+margin_left = 5.0
+margin_top = 60.0
+margin_right = 1000.0
+margin_bottom = 550.0
+rect_scale = Vector2( 2, 2 )
+custom_styles/panel = SubResource( 4 )
+
+[node name="EmptyLabel" type="Label" parent="WindowPanel/FilePanel"]
+margin_left = 397.5
+margin_top = 220.0
+margin_right = 497.5
+margin_bottom = 234.0
+rect_scale = Vector2( 2.5, 2.5 )
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+text = "Empty"
+align = 1
+valign = 1
+
+[node name="PictureButton" type="ToolButton" parent="WindowPanel/FilePanel"]
+visible = false
+margin_left = 29.5
+margin_top = 25.5
+margin_right = 105.5
+margin_bottom = 97.5
+icon = ExtResource( 8 )
+
+[node name="PictureName" type="Label" parent="WindowPanel/FilePanel/PictureButton"]
+margin_left = -20.5
+margin_top = 71.5
+margin_right = 98.5
+margin_bottom = 85.5
+text = "chloe_unveiled.jpg"
+align = 1
+valign = 1
 
 [node name="os_bar" type="Panel" parent="."]
 margin_top = 1045.0
@@ -77,5 +117,5 @@ text = "13:37"
 align = 1
 valign = 1
 
-[connection signal="pressed" from="Panel/CloseButton" to="Panel/CloseButton" method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="WindowPanel/CloseButton" to="WindowPanel/CloseButton" method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="os_bar/desktop" to="os_bar/desktop" method="_on_desktop_pressed"]

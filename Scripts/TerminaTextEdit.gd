@@ -68,6 +68,8 @@ func exec_command(command):
 			cprint("Syntax: help [CMD]\n\nGet help about commands. Returns a list of available commands or specific details about CMD (optional parameter).\n\nUsage examples:\n help\n help clear")
 		elif token[2] == "breakyou":
 			cprint("Syntax: breakyou USER IP PORT\n\nConnects to remote the service running an address IP:PORT and attempts to login as USER by means of a predefined password list.\n\n\nUsage examples:\n breakyou micky 110.37.21.5 80\n breakyou daisy 77.125.9.1 22")
+		elif token[2] == "filetoox":
+			cprint("Syntax: filetoox FILE\n\nRead metadata information stored in FILE.\n\n\nUsage examples:\n filetoox myfile.png")
 		else:
 			cprint("Cannot help with unknown command '" + token[2] +"'. Type 'help' for a list of available commands")
 	elif token[1] == "filetoox":
@@ -90,7 +92,13 @@ func cwriteline(msg):
 	
 func filetoox(token):
 	interactive = true
-	
+	if token.size() < 3:
+		cprint("Not enough arguments. Type 'help breakyou' for more details")
+	else:
+		if not token[2] == picture:
+			cprint("Cannot find file " + token[2])
+		else:
+			cprint("File Name                       : chloe_unveiled.jpg\nFile Size                       : 178 KiB\nFile Modification Date/Time     : 2022:06:29 11:58:49+02:00\nFile Access Date/Time           : 2022:06:29 11:58:54+02:00\nFile Permissions                : -rw-rw-r--\nFile Type                       : JPEG\nFile Type Extension             : jpg\nMIME Type                       : image/jpeg\nAuthor                          : 'Ed Sinclair'\nJFIF Version                    : 1.01\nResolution Unit                 : inches\nX Resolution                    : 96\nY Resolution                    : 96\nColor Space Data                : RGB")
 	interactive = false
 
 func netdog(token):
