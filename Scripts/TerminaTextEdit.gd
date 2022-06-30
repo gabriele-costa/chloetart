@@ -42,8 +42,8 @@ func _on_TextEdit_cursor_changed():
 		var cline = self.cursor_get_line()
 		if not (nline-1) == cline:
 			self.cursor_set_line(nline-1)
-		if self.get_line(cline).length() < 2:
-			self.set_line(cline, "$ ")
+		if self.get_line(nline-1).length() < 2:
+			self.set_line(nline-1, "$ ")
 			self.cursor_set_column(2)
 
 
@@ -70,6 +70,8 @@ func exec_command(command):
 			cprint("Syntax: breakyou USER IP PORT\n\nConnects to remote the service running an address IP:PORT and attempts to login as USER by means of a predefined password list.\n\n\nUsage examples:\n breakyou micky 110.37.21.5 80\n breakyou daisy 77.125.9.1 22")
 		elif token[2] == "filetoox":
 			cprint("Syntax: filetoox FILE\n\nRead metadata information stored in FILE.\n\n\nUsage examples:\n filetoox myfile.png")
+		elif token[2] == "nscan":
+			cprint("Syntax: nscan IP\n\nScan the machine with address IP and return a list of active services.\n\n\nUsage examples:\n nscan 85.50.1.3")
 		else:
 			cprint("Cannot help with unknown command '" + token[2] +"'. Type 'help' for a list of available commands")
 	elif token[1] == "filetoox":
@@ -86,9 +88,16 @@ func exec_command(command):
 func cprint(msg):
 	self.insert_text_at_cursor(msg)
 	self.insert_text_at_cursor("\n$ ")
-	
+
 func cwriteline(msg):
 	self.insert_text_at_cursor(msg + "\n")
+
+func cwrite(msg):
+	self.insert_text_at_cursor(msg)
+
+func cdeletelastline():
+	self.select(self.get_line_count() - 1, 0, self.get_line_count() - 1, self.cursor_get_column())
+	self.cut()
 	
 func filetoox(token):
 	interactive = true
@@ -138,5 +147,18 @@ func breakyou(token):
 
 func nscan(token):
 	interactive = true
-	
+	if token.size() < 3:
+		cprint("Not enough arguments. Type 'help nscan' for more details")
+	else: 
+		cwriteline("Scanning " + token[2] + " ...")
+		yield(get_tree().create_timer(0.5), "timeout")
+		if not token[2] == target_ip:
+			cprint("Cannot reach target")
+		else:
+			for x in range(1,99):
+				cwrite("Scan progress " + str(x) + "%")
+				yield(get_tree().create_timer(0.05), "timeout")
+				cdeletelastline()
+			cwriteline("Scan progress 100%")
+			cprint("Port    Status  Service\n21      open    ftp\n22      close   ssh\n80      open    http")
 	interactive = false
