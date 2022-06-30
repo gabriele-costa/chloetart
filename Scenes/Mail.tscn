@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Desktop/icons/desktop.svg" type="Texture" id=1]
 [ext_resource path="res://Desktop/background.jpg" type="Texture" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://Scripts/desktop_button.gd" type="Script" id=7]
 
 [sub_resource type="Theme" id=1]
+
+[sub_resource type="Theme" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.172549, 0.172549, 0.172549, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.262745, 0.262745, 0.262745, 0.705882 )
@@ -23,13 +28,13 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Panel" type="Panel" parent="."]
+[node name="WindowPanel" type="Panel" parent="."]
 margin_right = 2000.0
 margin_bottom = 1045.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="WindowTitle" type="Label" parent="WindowPanel"]
 margin_left = 950.0
 margin_top = 10.0
 margin_right = 1050.0
@@ -41,13 +46,45 @@ text = "Mail Client"
 align = 1
 valign = 1
 
-[node name="CloseButton" type="ToolButton" parent="Panel"]
+[node name="CloseButton" type="ToolButton" parent="WindowPanel"]
 margin_left = 1950.0
 margin_right = 2562.0
 margin_bottom = 608.0
 rect_scale = Vector2( 0.08, 0.08 )
 icon = ExtResource( 6 )
 script = ExtResource( 4 )
+
+[node name="InboxPanel" type="Panel" parent="WindowPanel"]
+margin_left = 5.0
+margin_top = 60.0
+margin_right = 305.0
+margin_bottom = 550.0
+rect_scale = Vector2( 2, 2 )
+theme = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
+
+[node name="InboxLabel" type="Label" parent="WindowPanel/InboxPanel"]
+margin_left = 120.0
+margin_top = 5.0
+margin_right = 180.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 60, 0 )
+text = "Inbox"
+align = 1
+valign = 1
+
+[node name="MessagePanel" type="Panel" parent="WindowPanel"]
+margin_left = 610.0
+margin_top = 60.0
+margin_right = 1300.0
+margin_bottom = 550.0
+rect_scale = Vector2( 2, 2 )
+theme = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
+
+[node name="MessageText" type="RichTextLabel" parent="WindowPanel/MessagePanel"]
+margin_right = 690.0
+margin_bottom = 490.0
 
 [node name="os_bar" type="Panel" parent="."]
 margin_top = 1045.0
@@ -77,5 +114,5 @@ text = "13:37"
 align = 1
 valign = 1
 
-[connection signal="pressed" from="Panel/CloseButton" to="Panel/CloseButton" method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="WindowPanel/CloseButton" to="WindowPanel/CloseButton" method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="os_bar/desktop" to="os_bar/desktop" method="_on_desktop_pressed"]
