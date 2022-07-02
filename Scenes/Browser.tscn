@@ -15,11 +15,10 @@ bg_color = Color( 0.172549, 0.172549, 0.172549, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.172549, 0.172549, 0.172549, 1 )
-border_width_left = 2
 border_width_top = 2
-border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+border_blend = true
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.262745, 0.262745, 0.262745, 0.705882 )
@@ -68,18 +67,17 @@ margin_bottom = 1040.0
 custom_styles/panel = SubResource( 4 )
 
 [node name="WebView" type="RichTextLabel" parent="WindowPanel/BackgroundPanel"]
+margin_top = 20.0
 margin_right = 1990.0
 margin_bottom = 920.0
 
-[node name="FavoritesLabel" type="Label" parent="WindowPanel"]
+[node name="ToolBar" type="Panel" parent="WindowPanel"]
 margin_left = 5.0
 margin_top = 60.0
 margin_right = 1000.0
-margin_bottom = 90.0
+margin_bottom = 100.0
 rect_scale = Vector2( 2, 2 )
-custom_styles/normal = SubResource( 5 )
-text = "Favorites"
-valign = 1
+custom_styles/panel = SubResource( 5 )
 
 [node name="os_bar" type="Panel" parent="."]
 margin_top = 1045.0
